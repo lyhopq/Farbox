@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel='alternate' type='application/rss+xml' title='atom 1.0' href='/feed' />
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+    <meta name="keywords" content="{{ site.configs.keywords }}" />
+    <meta name="description" content="{{ site.description }}" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/t/stylesheets/screen.css?version={{ resource_version }}" media="all">
+    <!--[if IE]>
+    <link href="/t/stylesheets/ie.css?version={{ resource_version }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!--[if IE 7]>
+    <link href="/t/stylesheets/font-awesome-ie7.min.css.css?version={{ resource_version }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <style type="text/css">.MathJax{color:#21A56D;}</style> 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true},
+        "HTML-CSS": { availableFonts: ["TeX"], linebreaks: {automatic: true}},
+        TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        <!-- "HTML-CSS": {linebreaks: {automatic: true}}, -->
+        SVG: {linebreaks: {automatic: true}}
+    });
+    </script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <header id="header" class="cf">
+            <div class="logo">
+                <a href="/">{{ site.configs.title or site.title}}</a>
+            </div>
+            {% if has('posts') %}
+            <nav class="main-nav">
+                <ul class="menu">
+                    <li>
+                        <a href="/" {% block nav_index%} {% endblock %}>Home</a>
+                    </li>
+                    <li>
+                        <a href="/archive" {% block nav_archive %} {% endblock %}>Archive</a>
+                    </li>
+                    {%  if has('images') %}
+                    <li>
+                        <a href="/folder/" {% block nav_folder %} {% endblock %}>Photos</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="/pages/links"  {% if request.path == '/pages/links' %}class="current"{% endif %}>Links</a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/about"  {% if request.path == '/pages/about' %}class="current"{% endif %}>About</a>
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
+        </header>
+        <div id="main" class="cf">
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% include 'include/footer.html' %}
+    </div>
+</body>
+</html>

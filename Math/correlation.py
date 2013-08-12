@@ -5,7 +5,7 @@ import numpy as np
 #import matplotlib
 #zhfont1 = matplotlib.font_manager.FontProperties(fname='/home/lyh/.fonts/simsun.ttc')
 
-x = np.arange(20.0)
+x = np.arange(120.0)
 N = len(x)
 mu = 1.0/N*sum(x)
 
